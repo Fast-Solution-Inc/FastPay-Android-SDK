@@ -12,7 +12,7 @@ This is official documentation for fastpay merchant SDK.
 
 ## Scaffolding Provided
 
-This repository provides the following components that are common to our open source projects:
+This repository provides the following components:
 
 - FastpaySDK.aar
 - Usermanual.pdf (Documentation)
@@ -56,12 +56,12 @@ import com.fastpay.payment.model.merchant.FastpayRequest;
 import com.fastpay.payment.model.merchant.FastpayResult;
 ```
  - Initiate FastPaySDK
-    * Store ID : Merchant’s Store Id to initiate transaction
-    * Store Password: Merchant’s Store password to initiate transaction
-    * Order ID/ Bill No : Order ID/Bill number for the transaction, this value should be unique in every transaction
-    * Amount : Payable amount in the transaction ex: “1000”
-    * Currency : Payment currency in the transaction (Default: IQD)
-    * Environment : Payment Environment to initiate transaction (SANDBOX for test & PRODUCTION for real life transaction)
+    * **Store ID:** Merchant’s Store Id to initiate transaction
+    * **Store Password:** Merchant’s Store password to initiate transaction
+    * **Order ID/ Bill No:** Order ID/Bill number for the transaction, this value should be unique in every transaction
+    * **Amount:** Payable amount in the transaction ex: “1000”
+    * **Currency:** Payment currency in the transaction (Default: IQD)
+    * **Environment:** Payment Environment to initiate transaction (SANDBOX for test & PRODUCTION for real life transaction)
  ```java
  FastpayRequest request = new FastpayRequest(this, "1111_1111", "password1234",amount, orderId, FastpaySDK.SANDBOX);
  startActivityForResult(request.getIntent(), FASTPAY_REQUEST_CODE);
@@ -70,14 +70,14 @@ import com.fastpay.payment.model.merchant.FastpayResult;
  Implement `onActivityResult()` overridden method to get transaction `success` & `failure` result using result code.
  Transaction success result can be receive from `FastpayResult` parcelable model using `FastpayResult.EXTRA_PAYMENT_RESULT` key and failure message can be receive as string using     `FastpayRequest.EXTRA_PAYMENT_MESSAGE` key.
  - Payment Success Data definition
-  *  *Transaction Status:* Payment status weather it is success / failed.
-  *  *Transaction ID:* If payment is successful then a transaction id will be available.
-  *  *Order ID:* Unique Order ID/Bill number for the transaction which was passed at initiation time.
-  *  *Payment Amount:* Payment amount for the transaction.
-  *  *Payment Currency:* Payment currency for the transaction. 
-  *  *Payee Name:* Payee name for a successful transaction.
-  *  *Payee Mobile Number:* Payee name for a successful transaction.
-  *  *Payment Time:* Payment occurrence time as the timestamp.
+   *  **Transaction Status:** Payment status weather it is success / failed.
+   *  **Transaction ID:** If payment is successful then a transaction id will be available.
+   *  **Order ID:** Unique Order ID/Bill number for the transaction which was passed at initiation time.
+   *  **Payment Amount:** Payment amount for the transaction.
+   *  **Payment Currency:** Payment currency for the transaction. 
+   *  **Payee Name:** Payee name for a successful transaction.
+   *  **Payee Mobile Number:** Payee name for a successful transaction.
+   *  **Payment Time:** Payment occurrence time as the timestamp.
 
 ```java
 @Override
