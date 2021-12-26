@@ -1,24 +1,13 @@
-# android-template [![Build Status](https://travis-ci.org/uber/android-template.svg?branch=master)](https://travis-ci.org/uber/android-template)
+# Fastpay SDK Documentation [![Build Status](https://travis-ci.org/uber/android-template.svg?branch=master)](https://travis-ci.org/uber/android-template)
 
-This template provides a starting point for open source Android projects at Uber.
+This is official documentation for fastpay payment SDK.
 
 ## Scaffolding Provided
 
 This repository provides the following components that are common to our open source projects:
 
-- CHANGELOG.md
-- CONTRIBUTING.md
-- LICENSE.txt
-- README.md
-- RELEASING.md
-- Issue & Pull Request Templates
-- Git Ignore
-- Checkstyle
-- Links to Codestyle
-- Lint
-- Dependency Management
-- Maven Central Release Script
-- Proguard Config
+- FastpaySDK.aar
+- Usermanual.pdf (Documentation)
 
 ## Checklist
 
