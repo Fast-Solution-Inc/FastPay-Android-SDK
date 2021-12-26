@@ -1,4 +1,5 @@
-# FastPay Merchant SDK 
+# FastPay Merchant SDK [![Maintenance](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)]()   [![Maintenance](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)]() 
+
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)]()
 [![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://fastpay.blackace.tech)
 [![PyPI license](https://img.shields.io/pypi/l/ansicolortags.svg)](https://pypi.python.org/pypi/ansicolortags/)
