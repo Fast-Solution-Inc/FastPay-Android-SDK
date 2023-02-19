@@ -98,7 +98,8 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
                    Log.d("payment_result", "Canceled : " + message);
                }
                break;
-       }
+        }
+      }
    }
    ```
 
