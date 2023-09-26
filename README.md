@@ -64,7 +64,7 @@ import com.fastpay.payment.model.merchant.FastpayResult;
     * **Environment:** Payment Environment to initiate transaction (SANDBOX for test & PRODUCTION for real life transaction)
  ```java
  FastpayRequest request = new FastpayRequest(this, "1111_1111", "password1234",amount, orderId, FastpaySDK.SANDBOX);
- startActivityForResult(request.getIntent(), FASTPAY_REQUEST_CODE);
+ request.startPaymentIntent(YourActivity.this,FASTPAY_REQUEST_CODE);
 ```
  - Receive Payment result 
  Implement `onActivityResult()` overridden method to get transaction `success` & `failure` result using result code.
