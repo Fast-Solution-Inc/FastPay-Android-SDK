@@ -3,12 +3,12 @@
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)]()
 [![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://fastpay.blackace.tech)
 [![PyPI license](https://img.shields.io/pypi/l/ansicolortags.svg)](https://pypi.python.org/pypi/ansicolortags/)
-[![Generic badge](https://img.shields.io/badge/Version-v1.0.0-blue.svg)](https://shields.io/)
+[![Generic badge](https://img.shields.io/badge/Version-v1.0.1-blue.svg)](https://shields.io/)
 
 
 This is official documentation for fastpay merchant SDK.
 
-![alt text](https://fastpay.blackace.tech/images/logo_dark.png)
+![alt text](https://fast-pay.iq/images/logo_dark.png)
 
 ## Scaffolding Provided
 
