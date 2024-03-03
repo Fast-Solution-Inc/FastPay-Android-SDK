@@ -15,7 +15,6 @@ This is official documentation for fastpay merchant SDK.
 This repository provides the following components:
 
 - FastpaySDK.aar
-- Usermanual.pdf (Documentation)
 
 ## Steps
 
@@ -62,9 +61,21 @@ import com.fastpay.payment.model.merchant.FastpayResult;
     * **Amount:** Payable amount in the transaction ex: “1000”
     * **Currency:** Payment currency in the transaction (Default: IQD)
     * **Environment:** Payment Environment to initiate transaction (SANDBOX for test & PRODUCTION for real life transaction)
+    * **Callback( Sdk status, message):** There are four sdk status (e.g. *FastpayRequest.SDKStatus.INIT*) and status message.
  ```java
- FastpayRequest request = new FastpayRequest(this, "1111_1111", "password1234",amount, orderId, FastpaySDK.SANDBOX);
- request.startPaymentIntent(YourActivity.this,FASTPAY_REQUEST_CODE);
+public enum SDKStatus{
+        INIT,
+        PAYMENT_WITH_FASTPAY_APP,
+        PAYMENT_WITH_FASTPAY_SDK,
+        CANCEL
+}
+```  
+Initialization
+ ```java
+FastpayRequest request = new FastpayRequest(this, "1111_1111", "password1234", amount, orderId, FastpaySDK.SANDBOX, (sdkStatus, message) ->{
+     Toast.makeText(MainActivity.this,message,Toast.LENGTH_LONG).show()
+});
+request.startPaymentIntent(YourActivity.this,FASTPAY_REQUEST_CODE);
 ```
  - Receive Payment result 
  Implement `onActivityResult()` overridden method to get transaction `success` & `failure` result using result code.
