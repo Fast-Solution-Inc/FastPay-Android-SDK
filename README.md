@@ -16,7 +16,17 @@ This repository provides the following components:
 
 - FastpaySDK.aar
 
-## Steps
+## Features
+1. Make payment transaction using Fastpay App.
+2. Check the status of the payments which you make.
+3. Verify payment with OTP.
+4. SDK status provided by SDK callbacks.
+5. Application redirect with required data while using fastpay personal applciation.
+
+### SDK flow
+![alt text](flow.png)
+
+## Initialization
 
 Please follow the below steps to integrate the payment SDK to an applications.
 
