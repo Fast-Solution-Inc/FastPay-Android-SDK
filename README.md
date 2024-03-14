@@ -60,7 +60,8 @@ import com.fastpay.payment.model.merchant.FastpayResult;
     * **Order ID/ Bill No:** Order ID/Bill number for the transaction, this value should be unique in every transaction
     * **Amount:** Payable amount in the transaction ex: “1000”
     * **Currency:** Payment currency in the transaction (Default: IQD)
-    * **Environment:** Payment Environment to initiate transaction (SANDBOX for test & PRODUCTION for real life transaction)
+    * **Environment:** Payment Environment to initiate transaction (SANDBOX for test & PRODUCTION for real life transaction).
+    * **Call back Uri:** When the SDK redirect to the fastpay application for payment and after payment cancel or failed it throws a callback with this uri. It is used for deeplinking with the client app for catching callbacks from fastpay application.
     * **Callback( Sdk status, message):** There are four sdk status (e.g. *FastpayRequest.SDKStatus.INIT*) and status message.
  ```java
 public enum SDKStatus{
@@ -69,10 +70,18 @@ public enum SDKStatus{
         PAYMENT_WITH_FASTPAY_SDK,
         CANCEL
 }
-```  
+```
+
+Call back Uri
+
+ ```java
+callback URI pattern (SUCCESS): sdk://your.website.com/further/paths?status=success&transaction_id=XXXX&order_id=XXXX&amount=XXX&currency=XXX&mobile_number=XXXXXX&time=XXXX&name=XXXX
+callback URI pattern (FAILED): sdk://your.website.com/further/paths?status=failed&order_id=XXXXX
+``` 
+ 
 Initialization
  ```java
-FastpayRequest request = new FastpayRequest(this, "1111_1111", "password1234", amount, orderId, FastpaySDK.SANDBOX, (sdkStatus, message) ->{
+FastpayRequest request = new FastpayRequest(this, "1111_1111", "password1234", amount, orderId, FastpaySDK.SANDBOX, "sdk://fastpay-sdk.com/callback", (sdkStatus, message) ->{
      Toast.makeText(MainActivity.this,message,Toast.LENGTH_LONG).show()
 });
 request.startPaymentIntent(YourActivity.this,FASTPAY_REQUEST_CODE);
@@ -89,6 +98,7 @@ request.startPaymentIntent(YourActivity.this,FASTPAY_REQUEST_CODE);
    *  **Payee Name:** Payee name for a successful transaction.
    *  **Payee Mobile Number:** Payee name for a successful transaction.
    *  **Payment Time:** Payment occurrence time as the timestamp.
+
 
 ```java
 @Override
@@ -113,8 +123,15 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
       }
    }
    ```
+ - Result from Call backUrl (Please use it onCreate or onResume)
 
-
+ ```java
+ String amount = getIntent().getData().getQueryParameter("amount");
+ String orderId = getIntent().getData().getQueryParameter("order_id");
+ String status = getIntent().getData().getQueryParameter("status");
+ String transaction_id = getIntent().getData().getQueryParameter("transaction_id");
+```
+> :warning: **Be sure to use try catch**
 ## License
 
     Copyright (C) 2021 Fastpay Technologies
