@@ -96,6 +96,12 @@ FastpayRequest request = new FastpayRequest(this, "1111_1111", "password1234", a
 });
 request.startPaymentIntent(YourActivity.this,FASTPAY_REQUEST_CODE);
 ```
+For ActivityResultLauncher:
+```java
+FastpayRequest request = new FastpayRequest(this, "*******", "*******",
+                        amount, orderId, FastpaySDK.SANDBOX, "sdk://fastpay-sdk.com/callback", (sdkStatus, message) -> Toast.makeText(SDKTestActivity.this,message,Toast.LENGTH_LONG).show());
+request.startPaymentIntent(SDKTestActivity.this,sdkResultLauncher);
+```
  - Receive Payment result 
  Implement `onActivityResult()` overridden method to get transaction `success` & `failure` result using result code.
  Transaction success result can be receive from `FastpayResult` parcelable model using `FastpayResult.EXTRA_PAYMENT_RESULT` key and failure message can be receive as string using     `FastpayRequest.EXTRA_PAYMENT_MESSAGE` key.
@@ -133,6 +139,35 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
       }
    }
    ```
+And for new ActivityResultLauncher in kotlin:
+```java
+private ActivityResultLauncher<Intent> sdkResultLauncher;
+sdkResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    Intent data = result.getData();
+                    switch (result.getResultCode()) {
+                        case Activity.RESULT_OK:
+                            if (data != null && data.hasExtra(FastpayResult.EXTRA_PAYMENT_RESULT)) {
+                                FastpayResult fastpayResult = data.getParcelableExtra(FastpayResult.EXTRA_PAYMENT_RESULT);
+
+                                if(BuildConfig.DEBUG){
+                                    Log.e("payment_result", fastpayResult.getTransactionId());
+                                }
+                                Toast.makeText(SDKTestActivity.this,"Payment Result:: SUCCESS =>"+fastpayResult.getTransactionId(),Toast.LENGTH_LONG).show();
+                            }
+                            break;
+                        case Activity.RESULT_CANCELED:
+                            if (data != null && data.hasExtra(FastpayRequest.EXTRA_PAYMENT_MESSAGE)) {
+                                String message = data.getStringExtra(FastpayRequest.EXTRA_PAYMENT_MESSAGE);
+                                Toast.makeText(SDKTestActivity.this,"Payment Result:: CANCELTED/FAILED =>"+message,Toast.LENGTH_LONG).show();
+                            }
+                            break;
+                    }
+                }
+        );
+    
+```
  - Result from Call backUrl (Please use it onCreate or onResume)
 
  ```java
